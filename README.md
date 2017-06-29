@@ -1,14 +1,15 @@
 # Ember Test Helpers
 [![Build Status](https://travis-ci.org/201-created/ember-cli-acceptance-test-helpers.svg?branch=master)](https://travis-ci.org/201-created/ember-cli-acceptance-test-helpers)
 
-A set of useful helper for ember-cli acceptance tests. Includes
-`expectComponent`, `expectElement`, and `clickComponent`.
+A set of useful helpers for ember-cli acceptance tests. Includes
+`assert.hasComponent`, `assert.hasElement`, `assert.noElement`, and
+`clickComponent`.
 
 ## Note
 
-### `expectComponent`
+### `assert.hasComponent`
 
-`expectComponent(componentName, count, options)`
+`assert.hasComponent(componentName, count, options)`
 
 Passes when the component exists in the container and is in the DOM.
 
@@ -18,7 +19,7 @@ If an integer count is provided, there must be exactly that many components in t
 If `options.contains` is set, the expectation only passes if the
 component is in the DOM and contains the string from `options.contains`.
 
-`expectComponent` can also be used in component integration tests. See [expect-component-hbs-integration-test.js](https://github.com/201-created/ember-cli-acceptance-test-helpers/blob/master/tests/integration/expect-component-hbs-integration-test.js) for an example.
+`hasComponent` can also be used in component integration tests. See [has-component-hbs-integration-test.js](https://github.com/201-created/ember-cli-acceptance-test-helpers/blob/master/tests/integration/has-component-hbs-integration-test.js) for an example.
 Note that `ember-qunit` version 0.4.7 or greater is required to make the component integration tests work properly.
 
 ### `clickComponent`
@@ -28,9 +29,9 @@ Note that `ember-qunit` version 0.4.7 or greater is required to make the compone
 Clicks the CSS selector inside the component(s) of type `componentName`
 in the DOM.
 
-### `expectElement`
+### `assert.hasElement`
 
-`expectElement(selector, count, options)`
+`assert.hasElement(selector, count, options)`
 
 Expect that `count` instances of the selector are in the DOM.
 
@@ -42,11 +43,11 @@ value of `options.contains`.
 
 If `options.message` is set, the message will be displayed in the test results instead of the default,  `Found 0 of '.selector' but expected 1.`
 
-### `expectNoElement`
+### `assert.noElement`
 
-`expectNoElement(selector, options)`
+`assert.noElement(selector, options)`
 
-A convenience for `expectElement` when the count is 0.
+A convenience for `hasElement` when the count is 0.
 
 `options` can include a `contains` and/or a `message` key.
 
@@ -74,10 +75,7 @@ The generator makes changes to files assuming the structure of them has not chan
     `predef` array (after "currentRouteName"):
 
 ```
-"expectComponent",
 "clickComponent",
-"expectElement",
-"expectNoElement",
 ```
 
   * You may need to restart your ember server so that it picks up the new .jshintrc file.
